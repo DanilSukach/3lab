@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (
     QApplication,
     QDesktopWidget,
     QLineEdit,
-    QInputDialog
+    QInputDialog,
 )
 
 
@@ -27,8 +27,6 @@ class Example(QWidget):
         self.btn_2 = QPushButton("Создание датасета с другой организацией файлов", self)
         self.btn_2.move(50, 60)
         self.btn_2.clicked.connect(self.showDialog_2)
-
-       
 
         self.resize(1000, 400)
         self.center()
@@ -48,6 +46,7 @@ class Example(QWidget):
         if ok:
 
             self.create_file = create_csv(str(text))
+
     def showDialog_2(self):
 
         text, ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
