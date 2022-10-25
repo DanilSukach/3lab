@@ -16,7 +16,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QPixmap
 from iterator_1_3 import SimpleIterator
-
+from scraping import scraping
 from copy_dataset import copy_dataset
 
 
@@ -27,6 +27,9 @@ class Example(QWidget):
         self.initUI()
 
     def initUI(self):
+        self.btn_0 = QPushButton("Создать датасет", self)
+        self.btn_0.move(50, 20)
+        self.btn_0.clicked.connect(self.showDialog_0)
         self.btn_1 = QPushButton("Создать файл анотацию исходного датасета", self)
         self.btn_1.move(50, 60)
         self.btn_1.clicked.connect(self.showDialog_1)
@@ -57,6 +60,13 @@ class Example(QWidget):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
+    def showDialog_0(self):
+        text_1, ok = QInputDialog.getText(self, "Input Dialog", "Какие картинки скачать?")
+        text_2, ok = QInputDialog.getText(self, "Input Dialog", "Сколько скачать")
+        if ok:
+
+            self.create_image = scraping(str(text_1),int(text_2))
+    
     def showDialog_1(self):
 
         
