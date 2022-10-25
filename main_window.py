@@ -27,7 +27,6 @@ class Example(QWidget):
         self.initUI()
 
     def initUI(self):
-
         self.btn_1 = QPushButton("Создать файл анотацию исходного датасета", self)
         self.btn_1.move(50, 60)
         self.btn_1.clicked.connect(self.showDialog_1)
@@ -50,6 +49,7 @@ class Example(QWidget):
         self.center()
         self.setWindowTitle("lab3")
         self.show()
+        self.text,ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
 
     def center(self):
         qr = self.frameGeometry()
@@ -59,28 +59,29 @@ class Example(QWidget):
 
     def showDialog_1(self):
 
-        text, ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
+        
+        text_2, ok = QInputDialog.getText(self, "Input Dialog", "С каким названием создать файл?")
 
         if ok:
 
-            self.create_file = create_csv(str(text))
+            self.create_file = create_csv(str(self.text),str(text_2))
 
     def showDialog_2(self):
 
-        text, ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
+        text_2, ok = QInputDialog.getText(self, "Input Dialog", "С каким названием создать файл?")
 
         if ok:
 
-            self.create_file = copy_random(str(text))
+            self.create_file = copy_random(str(self.text),str(text_2))
 
     def showDialog_3(self):
 
-        text, ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
+        
         text_2, ok = QInputDialog.getText(self, "Input Dialog", "Введите новое название папки:")
 
         if ok:
 
-            self.create_file = copy_dataset(str(text),str(text_2))
+            self.create_file = copy_dataset(str(self.text),str(text_2))
 
     def showDialog_4(self):
 
