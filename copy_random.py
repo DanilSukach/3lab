@@ -9,9 +9,9 @@ def copy_random(path: str) -> None:
     if not os.path.isdir("dataset_copy_random"):
         os.mkdir("dataset_copy_random")
     data = []
-    info = os.listdir(path)
+    info = os.listdir(path+"/")
     for i in info:
-        info_directiry = os.listdir(path+i)
+        info_directiry = os.listdir(path+"/"+i)
         for j in info_directiry:
             control = True
             while control:

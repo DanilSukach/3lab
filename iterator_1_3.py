@@ -34,15 +34,6 @@ def main():
     print(next(s))
     print(next(s))
     print(next(s))
-    print(next(s))
-    print(next(s))
-    s = SimpleIterator("tiger", "data_copy.csv")
-    print(next(s))
-    print(next(s))
-    print(next(s))
-    print(next(s))
-    for tiger_path in s:
-        print(tiger_path)
 
 
 if __name__ == "__main__":
