@@ -1,0 +1,6 @@
+.venv
+.vscode
+__pycache__
+dataset
+dataset_copy_random
+data.csv
