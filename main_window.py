@@ -10,10 +10,14 @@ from PyQt5.QtWidgets import (
     QDesktopWidget,
     QLineEdit,
     QInputDialog,
+    QLabel,
+    QMainWindow,
 )
+from PyQt5.QtGui import QPixmap
 from iterator_1_3 import SimpleIterator
-from iterator_2 import SimpleIterator
+
 from copy import copy
+
 
 class Example(QWidget):
     def __init__(self):
@@ -34,9 +38,16 @@ class Example(QWidget):
         self.btn_3.clicked.connect(self.showDialog_3)
         self.btn_4 = QPushButton("Просмотр изображений", self)
         self.btn_4.move(50, 140)
-        self.btn_4.clicked.connect(self.showDialog_2)
-
-        self.resize(1000, 400)
+        self.btn_4.clicked.connect(self.showDialog_4)
+        self.label = QLabel(self)
+        
+        self.btn_6 = QPushButton("Далее", self)
+        self.btn_6.move(100, 550)
+        self.btn_6.clicked.connect(self.showDialog_5)
+        self.label.move(50,200)
+        
+        
+        self.resize(600, 600)
         self.center()
         self.setWindowTitle("lab3")
         self.show()
@@ -62,7 +73,7 @@ class Example(QWidget):
         if ok:
 
             self.create_file = copy_random(str(text))
-    
+
     def showDialog_3(self):
 
         text, ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
@@ -70,6 +81,23 @@ class Example(QWidget):
         if ok:
 
             self.create_file = copy(str(text))
+
+    def showDialog_4(self):
+
+        text_1, ok = QInputDialog.getText(self, "Input Dialog", "Введите файл с данными:")
+        text_2, ok = QInputDialog.getText(self, "Input Dialog", "Введите метку:")
+
+        if ok:
+
+            self.create_iterator = SimpleIterator(str(text_2),str(text_1))
+            self.pixmap = QPixmap(next(self.create_iterator))
+            self.label.setPixmap(self.pixmap)
+            self.label.resize(self.pixmap.width(), self.pixmap.height())
+    
+    def showDialog_5(self):
+        self.pixmap = QPixmap(next(self.create_iterator))
+        self.label.setPixmap(self.pixmap)
+        self.label.resize(self.pixmap.width(), self.pixmap.height())
 
 
 if __name__ == "__main__":
