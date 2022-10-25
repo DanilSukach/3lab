@@ -4,3 +4,5 @@ __pycache__
 dataset
 dataset_copy_random
 data.csv
+data_copy.csv
+dataset_copy
