@@ -94,9 +94,9 @@ class Example(QWidget):
 
     def showDialog_4(self):
 
-        
+        text_1, _ =(QFileDialog.getOpenFileName(self, "выберете файл?"))
         text_2, ok = QInputDialog.getText(self, "Input Dialog", "Введите метку:")
-        text_1, _ =(QFileDialog.getOpenFileName(self, "выберете файл?"))# getExistingDirectory(self, 'Select Folder')
+        
         if ok:
 
             self.create_iterator = SimpleIterator(str(text_2), str(text_1))
