@@ -54,7 +54,6 @@ class Example(QWidget):
         self.center()
         self.setWindowTitle("lab3")
         self.show()
-        #self.text,ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
         self.folderpath = QFileDialog.getExistingDirectory(self, 'Select Folder')
 
     def center(self):
@@ -64,9 +63,9 @@ class Example(QWidget):
         self.move(qr.topLeft())
 
     def showDialog_0(self):
-        text_1, ok = QInputDialog.getText(self, "Input Dialog", "Какие картинки скачать?")
+        text_1, ok_ = QInputDialog.getText(self, "Input Dialog", "Какие картинки скачать?")
         text_2, ok = QInputDialog.getText(self, "Input Dialog", "Сколько скачать")
-        if ok:
+        if ok and ok_:
 
             self.create_image = scraping(str(text_1),int(text_2))
     
@@ -94,10 +93,10 @@ class Example(QWidget):
 
     def showDialog_4(self):
 
-        text_1, _ =(QFileDialog.getOpenFileName(self, "выберете файл?"))
+        text_1, _ =(QFileDialog.getOpenFileName(self, "выберите файл?"))
         text_2, ok = QInputDialog.getText(self, "Input Dialog", "Введите метку:")
         
-        if ok:
+        if ok and _:
 
             self.create_iterator = SimpleIterator(str(text_2), str(text_1))
             self.pixmap = QPixmap(next(self.create_iterator))
