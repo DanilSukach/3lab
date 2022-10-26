@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (
     QInputDialog,
     QLabel,
     QMainWindow,
+    QFileDialog
 )
 from PyQt5.QtGui import QPixmap
 from iterator_1_3 import SimpleIterator
@@ -27,6 +28,7 @@ class Example(QWidget):
         self.initUI()
 
     def initUI(self):
+        
         self.btn_0 = QPushButton("Создать датасет", self)
         self.btn_0.move(50, 20)
         self.btn_0.clicked.connect(self.showDialog_0)
@@ -52,7 +54,8 @@ class Example(QWidget):
         self.center()
         self.setWindowTitle("lab3")
         self.show()
-        self.text,ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
+        #self.text,ok = QInputDialog.getText(self, "Input Dialog", "Введите путь к папке:")
+        self.folderpath = QFileDialog.getExistingDirectory(self, 'Select Folder')
 
     def center(self):
         qr = self.frameGeometry()
@@ -70,19 +73,15 @@ class Example(QWidget):
     def showDialog_1(self):
 
         
-        text_2, ok = QInputDialog.getText(self, "Input Dialog", "С каким названием создать файл?")
+        text_2, _ =(QFileDialog.getSaveFileName(self, "Напишите название файла", filter=".csv"))
 
-        if ok:
-
-            self.create_file = create_csv(str(self.text),str(text_2))
+        self.create_file = create_csv(str(self.folderpath),str(text_2))
 
     def showDialog_2(self):
 
-        text_2, ok = QInputDialog.getText(self, "Input Dialog", "С каким названием создать файл?")
-
-        if ok:
-
-            self.create_file = copy_random(str(self.text),str(text_2))
+        
+        text_2, _ =(QFileDialog.getSaveFileName(self, "Напишите название файла", filter=".csv"))
+        self.create_file = copy_random(str(self.folderpath),str(text_2))
 
     def showDialog_3(self):
 
@@ -91,15 +90,13 @@ class Example(QWidget):
 
         if ok:
 
-            self.create_file = copy_dataset(str(self.text),str(text_2))
+            self.create_file = copy_dataset(str(self.folderpath),str(text_2))
 
     def showDialog_4(self):
 
-        text_1, ok = QInputDialog.getText(
-            self, "Input Dialog", "Введите файл с данными:"
-        )
+        
         text_2, ok = QInputDialog.getText(self, "Input Dialog", "Введите метку:")
-
+        text_1, _ =(QFileDialog.getOpenFileName(self, "выберете файл?"))# getExistingDirectory(self, 'Select Folder')
         if ok:
 
             self.create_iterator = SimpleIterator(str(text_2), str(text_1))

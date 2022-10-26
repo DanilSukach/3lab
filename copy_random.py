@@ -25,7 +25,7 @@ def copy_random(path: str, path_to: str) -> None:
             absolute = os.path.abspath(path_to + "/" + rand + ".jpg")
             relative = os.path.relpath(path_to + "/" + rand + ".jpg")
             data.append([absolute, relative, i])
-    with open(path_to + ".csv", "w", newline="") as file:
+    with open(path_to+".csv", "w", newline="") as file:
         writer = csv.writer(file, delimiter=";")
         writer.writerows(data)
 
